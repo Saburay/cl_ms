@@ -20,6 +20,7 @@
                      <p><b>Автор: </b><mark>{{post.author}}</mark></p>
               </div>
           </div>
+          <a href="{%url 'news-detail' post.id%}" class="btn btn-outline-warning">Читать далее</a>
       </div>
     {%endfor%}
 {%endblock main_section%}
