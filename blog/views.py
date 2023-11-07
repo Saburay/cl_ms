@@ -1,20 +1,6 @@
 from django.shortcuts import render
 from .models import News
-
-news = [
-    {
-        'title': 'Our first publication',
-        'text': 'some text',
-        'date': '2023',
-        'author': 'some author'
-    },
-{
-        'title': 'Our second publication',
-        'text': 'some 2th text',
-        'date': '2023',
-        #'author': 'some another author'
-    }
-]
+from django.views.generic import ListView,DetailView
 
 def home(request):
     data = {
@@ -23,6 +9,21 @@ def home(request):
 
     }
     return render(request, 'blog/home.html', data)
+
+class ShowNewsView(ListView):
+    model = News
+    template_name = 'blog/home.html'
+    context_object_name = 'news'
+    ordering = ['-date']
+
+    def get_context_data(self, **kwards):
+        ctx = super(ShowNewsView, self).get_context_data(**kwards)
+        ctx['title'] = 'Главная страница блога'
+        return ctx
+
+class NewsDetailView(DetailView):
+    model = News
+
 
 def contacts(request):
     return render(request, 'blog/contacts.html', {'title':'Contacts page'})
