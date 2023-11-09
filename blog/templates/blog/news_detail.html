@@ -20,6 +20,11 @@
                      <p><b>Автор: </b><mark>{{post.author}}</mark></p>
               </div>
           </div>
+          {% if object.author == user %}
+          <hr>
+                 <a href="{% url 'news-update' object.id %" class="btn btn-info">Обновить публикацию
+                 <a href="{% url 'news-delete' object.id %" class="btn btn-danger">Удалить публикацию</a>
+          {% endif %}
       </div>
 {%endblock main_section%}
 {%block aside_news_section%}
