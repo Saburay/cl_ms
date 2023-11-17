@@ -6,7 +6,7 @@
       <div class="alert alert-light">
           <a href="{% url 'blog-home' %}">Вернуться на главную</a>
         <h2>{{post.title}}</h2>
-        <p>{{post.text}}</p>
+        <p>{{post.text|save}}</p>
           <div class="row">
               <div>
                   {% if post.author.profile.img %}
@@ -22,11 +22,12 @@
           </div>
           {% if object.author == user %}
           <hr>
-                 <a href="{% url 'news-update' object.id %" class="btn btn-info">Обновить публикацию
+                 <a href="{% url 'news-update' object.id %" class="btn btn-info">Обновить публикацию</a>
                  <a href="{% url 'news-delete' object.id %" class="btn btn-danger">Удалить публикацию</a>
           {% endif %}
       </div>
 {%endblock main_section%}
+
 {%block aside_news_section%}
 <h4><b>Всяко-разно</b></h4>
                   <p>
